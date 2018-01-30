@@ -1,0 +1,247 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccbjb.common.mapper.BusStaffMapper">
+    <sql id="Base_Column_List">
+        id,
+        staff_no,
+        name,
+        name_spell,
+        name_kana,
+        name_jp,
+        sex,
+        birthday,
+        join_day,
+        practice_start_date,
+        practice_end_date,
+        trial_start_date,
+        trial_end_date,
+        trial_result,
+        formal_date,
+        job_status,
+        befwork_age,
+        aftwork_age,
+        work_age,
+        work_date,
+        graduate_date,
+        graduate_school,
+        education,
+        training_mode,
+        major,
+        degree,
+        email,
+        tel,
+        urgency_cnt,
+        urgency_tel,
+        home_addr,
+        addr,
+        register_addr,
+        register_type,
+        jp_level,
+        en_level,
+        salary_card,
+        id_card,
+        professional,
+        door_no,
+        check_no,
+        nation,
+        country,
+        ismarried,
+        hasbaby,
+        doc_manage_mode,
+        doc_no,
+        doc_fee,
+        doc_remark,
+        ispartied,
+        partied_date,
+        partied_rls,
+        partied_rls1,
+        passport_no,
+        salary_status,
+        doc_box_no,
+        practice_fee,
+        trial_fee,
+        formal_fee_bottom,
+        formal_fee_top,
+        formal_fee,
+        department,
+        leave_date,
+        duty,
+        cmpbefwork_age,
+        t_level,
+        student_line
+    </sql>
+
+    <sql id="where_all">
+        <where>
+            <if test="staffNo != null and staffNo !='' ">
+                and (
+                LOWER(staff_no) like CONCAT("%",#{staffNo,jdbcType=VARCHAR},"%")
+                )
+            </if>
+            <if test="name != null and name !='' ">
+                and (
+                LOWER(name) like CONCAT("%",#{name,jdbcType=VARCHAR},"%")
+                )
+            </if>
+            <if test="nameKana != null and nameKana !='' ">
+                and (
+                LOWER(name_kana) like CONCAT("%",#{nameKana,jdbcType=VARCHAR},"%")
+                )
+            </if>
+            <if test="nameJp != null and nameJp !='' ">
+                and (
+                LOWER(name_jp) like CONCAT("%",#{nameJp,jdbcType=VARCHAR},"%")
+                )
+            </if>
+            <if test="sexIdList != null and sexIdList.size() != 0">
+                and sex in
+                <foreach item="item" index="index" open="(" separator="," close=")" collection="sexIdList">
+                  #{item}
+                </foreach>
+            </if>
+            <if test="joinDayStart != null and joinDayStart !='' and joinDayEnd != null and joinDayEnd !='' ">
+                and join_day between #{joinDayStart} and #{joinDayEnd}
+            </if>
+            <if test="practiceStartDateStart != null and practiceStartDateStart !='' and practiceStartDateEnd != null and practiceStartDateEnd !='' ">
+              and practice_start_date between #{practiceStartDateStart} and #{practiceStartDateEnd}
+            </if>
+            <if test="practiceEndDateStart != null and practiceEndDateStart !='' and practiceEndDateEnd != null and practiceEndDateEnd !='' ">
+              and practice_end_date between #{practiceEndDateStart} and #{practiceEndDateEnd}
+            </if>
+            <if test="trialStartDateStart != null and trialStartDateStart !='' and trialStartDateEnd != null and trialStartDateEnd !='' ">
+              and trial_start_date between #{trialStartDateStart} and #{trialStartDateEnd}
+            </if>
+            <if test="trialEndDateStart != null and trialEndDateStart !='' and trialEndDateEnd != null and trialEndDateEnd !='' ">
+              and practice_end_date between #{trialEndDateStart} and #{trialEndDateEnd}
+            </if>
+            <if test="formalDateStart != null and formalDateStart !='' and formalDateEnd != null and formalDateEnd !='' ">
+              and formal_date between #{formalDateStart} and #{formalDateEnd}
+            </if>
+            <if test="jobStatusIdList != null and jobStatusIdList.size() != 0">
+              and job_status in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="jobStatusIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="befworkAgeStart != null and befworkAgeStart !='' and befworkAgeEnd != null and befworkAgeEnd !='' ">
+              and befwork_age between #{befworkAgeStart} and #{befworkAgeEnd}
+            </if>
+            <if test="cmpbefworkAgeStart != null and cmpbefworkAgeStart !='' and cmpbefworkAgeEnd != null and befworkAgeEnd !='' ">
+              and cmpbefwork_age between #{cmpbefworkAgeStart} and #{cmpbefworkAgeEnd}
+            </if>
+            <if test="aftworkAgeStart != null and aftworkAgeStart !='' and aftworkAgeEnd != null and aftworkAgeEnd !='' ">
+              and aftwork_age between #{aftworkAgeStart} and #{aftworkAgeEnd}
+            </if>
+            <if test="workAgeStart != null and workAgeStart !='' and workAgeEnd != null and workAgeEnd !='' ">
+              and work_age between #{workAgeStart} and #{workAgeEnd}
+            </if>
+            <if test="workDateStart != null and workDateStart !='' and workDateEnd != null and workDateEnd !='' ">
+              and work_date between #{workDateStart} and #{workDateEnd}
+            </if>
+            <if test="graduateDateStart != null and graduateDateStart !='' and graduateDateEnd != null and graduateDateEnd !='' ">
+              and graduate_date between #{graduateDateStart} and #{graduateDateEnd}
+            </if>
+            <if test="graduateSchool != null and graduateSchool !='' ">
+              and (
+              LOWER(graduate_school) like CONCAT("%",#{graduateSchool,jdbcType=VARCHAR},"%")
+              )
+            </if>
+            <if test="educationIdList != null and educationIdList.size() != 0">
+              and education in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="educationIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="major != null and major !='' ">
+              and (
+              LOWER(major) like CONCAT("%",#{major,jdbcType=VARCHAR},"%")
+              )
+            </if>
+            <if test="degreeIdList != null and degreeIdList.size() != 0">
+              and degree in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="degreeIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="jpLevelIdList != null and jpLevelIdList.size() != 0">
+              and jp_level in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="jpLevelIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="enLevelIdList != null and enLevelIdList.size() != 0">
+              and en_level in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="enLevelIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="nationIdList != null and nationIdList.size() != 0">
+              and nation in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="nationIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="countryIdList != null and countryIdList.size() != 0">
+              and country in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="countryIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="yesNoIdList != null and yesNoIdList.size() != 0">
+              and ismarried in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="yesNoIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="yesNoIdList != null and yesNoIdList.size() != 0">
+              and hasbaby in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="yesNoIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="yesNoIdList != null and yesNoIdList.size() != 0">
+              and in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="yesNoIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="yesNoIdList != null and yesNoIdList.size() != 0">
+              and department in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="yesNoIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="dutyIdList != null and dutyIdList.size() != 0">
+              and duty in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="dutyIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="tLevelIdList != null and tLevelIdList.size() != 0">
+              and t_level in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="tLevelIdList">
+                #{item}
+              </foreach>
+            </if>
+            <if test="studentLineIdList != null and studentLineIdList.size() != 0">
+              and student_line in
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="studentLineIdList">
+                #{item}
+              </foreach>
+            </if>
+        </where>
+    </sql>
+    <select id="findAllStaff" parameterType="BusStaff" resultType="BusStaff">
+        select
+        <include refid="Base_Column_List"/>
+        from bus_staff
+        <include refid="where_all"/>
+    </select>
+    <select id="getPieDataByDicType" resultType="ChartDataModel">
+        select count(s.${dicType}) as value ,d.dic_label as name
+        from bus_staff s
+        INNER join (select d1.dic_label,d1.dic_value from sys_dic d1 right join sys_dic d2 on d1.parent_id = d2.id where d2.dic_value = #{dicType}) d
+        on s.${dicType}=d.dic_value
+        group by ${dicType}
+    </select>
+</mapper>

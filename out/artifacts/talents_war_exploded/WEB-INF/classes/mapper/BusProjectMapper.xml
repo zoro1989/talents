@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccbjb.common.mapper.BusProjectMapper">
+    <sql id="Base_Column_List">
+        id,
+        proj_name,
+        start_date,
+        end_date,
+        dev_language,
+        operate_sys,
+        dev_tool,
+        dev_database,
+        dev_app_server,
+        dev_framework,
+        service_customer,
+        bus_type,
+        contract_count,
+        put_count,
+        parent_id
+    </sql>
+
+    <sql id="where_all">
+        <where>
+            <if test="findContent != null and findContent !='' " >
+                and (
+                LOWER(proj_name) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%")
+                )
+            </if>
+            and parent_id IS NULL
+        </where>
+    </sql>
+    <select id="findAllProject" resultType="BusProject">
+        select
+        <include refid="Base_Column_List"/>
+        from bus_project
+        <include refid="where_all"/>
+    </select>
+    <select id="findProjectItems" resultType="BusProject">
+        select
+        <include refid="Base_Column_List"/>
+        FROM bus_project
+        where
+        parent_id = #{parentId}
+    </select>
+</mapper>

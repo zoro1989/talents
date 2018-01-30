@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ccbjb.common.mapper.SysDicMapper">
+
+    <sql id="Base_Column_List">
+        id,
+        dic_value,
+        dic_label,
+        parent_id,
+        type
+    </sql>
+
+    <sql id="where_all">
+        <where>
+            <if test="findContent != null and findContent !='' " >
+                and (
+                LOWER(dic_value) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%") or
+                LOWER(dic_label) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%")
+                )
+            </if>
+        </where>
+    </sql>
+    <select id="findAllDic" resultType="SysDic">
+        select
+        <include refid="Base_Column_List"/>
+        from sys_dic
+        <include refid="where_all"/>
+    </select>
+
+    <select id="selectDicByDicType" resultType="SysDic">
+        select p.id, p.dic_value,p.dic_label,p.parent_id,type
+        FROM sys_dic p
+		where
+			p.parent_id in (SELECT id from sys_dic where dic_value=#{dicType})
+    </select>
+    <select id="findDicParents" resultType="SysDic">
+        select p.id, p.dic_value,p.dic_label,p.parent_id,type
+        FROM sys_dic p
+		where
+			p.parent_id  IS NULL
+    </select>
+    <select id="findDicParentByType" resultType="SysDic">
+        select p.id, p.dic_value,p.dic_label,p.parent_id,type
+        FROM sys_dic p
+		where
+			p.type = #{type} AND p.parent_id  IS NULL
+    </select>
+</mapper>

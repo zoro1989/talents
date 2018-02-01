@@ -1,5 +1,7 @@
 package com.ccbjb.common.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.io.Serializable;
@@ -20,35 +22,35 @@ public class BusStaff implements Serializable {
     private Date birthday;
     private Date joinDay;
     @Transient
-    private Date joinDayStart;
+    private String joinDayStart;
     @Transient
-    private Date joinDayEnd;
+    private String joinDayEnd;
     private Date practiceStartDate;
     @Transient
-    private Date practiceStartDateStart;
+    private String practiceStartDateStart;
     @Transient
-    private Date practiceStartDateEnd;
+    private String practiceStartDateEnd;
     private Date practiceEndDate;
     @Transient
-    private Date practiceEndDateStart;
+    private String practiceEndDateStart;
     @Transient
-    private Date practiceEndDateEnd;
+    private String practiceEndDateEnd;
     private Date trialStartDate;
     @Transient
-    private Date trialStartDateStart;
+    private String trialStartDateStart;
     @Transient
-    private Date trialStartDateEnd;
+    private String trialStartDateEnd;
     private Date trialEndDate;
     @Transient
-    private Date trialEndDateStart;
+    private String trialEndDateStart;
     @Transient
-    private Date trialEndDateEnd;
+    private String trialEndDateEnd;
     private String trialResult;
     private Date formalDate;
     @Transient
-    private Date formalDateStart;
+    private String formalDateStart;
     @Transient
-    private Date formalDateEnd;
+    private String formalDateEnd;
     private Integer jobStatus;
     private Integer befworkAge;
     @Transient
@@ -66,15 +68,15 @@ public class BusStaff implements Serializable {
     private Integer workAgeEnd;
     private Integer workAge;
     @Transient
-    private Date workDateStart;
+    private String workDateStart;
     @Transient
-    private Date workDateEnd;
+    private String workDateEnd;
     private Date workDate;
     private Date graduateDate;
     @Transient
-    private Date graduateDateStart;
+    private String graduateDateStart;
     @Transient
-    private Date graduateDateEnd;
+    private String graduateDateEnd;
     private String graduateSchool;
     private Integer education;
     private Integer trainingMode;
@@ -270,19 +272,19 @@ public class BusStaff implements Serializable {
         this.joinDay = joinDay;
     }
 
-    public Date getJoinDayStart() {
+    public String getJoinDayStart() {
         return joinDayStart;
     }
 
-    public void setJoinDayStart(Date joinDayStart) {
+    public void setJoinDayStart(String joinDayStart) {
         this.joinDayStart = joinDayStart;
     }
 
-    public Date getJoinDayEnd() {
+    public String getJoinDayEnd() {
         return joinDayEnd;
     }
 
-    public void setJoinDayEnd(Date joinDayEnd) {
+    public void setJoinDayEnd(String joinDayEnd) {
         this.joinDayEnd = joinDayEnd;
     }
 
@@ -294,19 +296,19 @@ public class BusStaff implements Serializable {
         this.practiceStartDate = practiceStartDate;
     }
 
-    public Date getPracticeStartDateStart() {
+    public String getPracticeStartDateStart() {
         return practiceStartDateStart;
     }
 
-    public void setPracticeStartDateStart(Date practiceStartDateStart) {
+    public void setPracticeStartDateStart(String practiceStartDateStart) {
         this.practiceStartDateStart = practiceStartDateStart;
     }
 
-    public Date getPracticeStartDateEnd() {
+    public String getPracticeStartDateEnd() {
         return practiceStartDateEnd;
     }
 
-    public void setPracticeStartDateEnd(Date practiceStartDateEnd) {
+    public void setPracticeStartDateEnd(String practiceStartDateEnd) {
         this.practiceStartDateEnd = practiceStartDateEnd;
     }
 
@@ -318,19 +320,19 @@ public class BusStaff implements Serializable {
         this.practiceEndDate = practiceEndDate;
     }
 
-    public Date getPracticeEndDateStart() {
+    public String getPracticeEndDateStart() {
         return practiceEndDateStart;
     }
 
-    public void setPracticeEndDateStart(Date practiceEndDateStart) {
+    public void setPracticeEndDateStart(String practiceEndDateStart) {
         this.practiceEndDateStart = practiceEndDateStart;
     }
 
-    public Date getPracticeEndDateEnd() {
+    public String getPracticeEndDateEnd() {
         return practiceEndDateEnd;
     }
 
-    public void setPracticeEndDateEnd(Date practiceEndDateEnd) {
+    public void setPracticeEndDateEnd(String practiceEndDateEnd) {
         this.practiceEndDateEnd = practiceEndDateEnd;
     }
 
@@ -342,19 +344,19 @@ public class BusStaff implements Serializable {
         this.trialStartDate = trialStartDate;
     }
 
-    public Date getTrialStartDateStart() {
+    public String getTrialStartDateStart() {
         return trialStartDateStart;
     }
 
-    public void setTrialStartDateStart(Date trialStartDateStart) {
+    public void setTrialStartDateStart(String trialStartDateStart) {
         this.trialStartDateStart = trialStartDateStart;
     }
 
-    public Date getTrialStartDateEnd() {
+    public String getTrialStartDateEnd() {
         return trialStartDateEnd;
     }
 
-    public void setTrialStartDateEnd(Date trialStartDateEnd) {
+    public void setTrialStartDateEnd(String trialStartDateEnd) {
         this.trialStartDateEnd = trialStartDateEnd;
     }
 
@@ -366,19 +368,19 @@ public class BusStaff implements Serializable {
         this.trialEndDate = trialEndDate;
     }
 
-    public Date getTrialEndDateStart() {
+    public String getTrialEndDateStart() {
         return trialEndDateStart;
     }
 
-    public void setTrialEndDateStart(Date trialEndDateStart) {
+    public void setTrialEndDateStart(String trialEndDateStart) {
         this.trialEndDateStart = trialEndDateStart;
     }
 
-    public Date getTrialEndDateEnd() {
+    public String getTrialEndDateEnd() {
         return trialEndDateEnd;
     }
 
-    public void setTrialEndDateEnd(Date trialEndDateEnd) {
+    public void setTrialEndDateEnd(String trialEndDateEnd) {
         this.trialEndDateEnd = trialEndDateEnd;
     }
 
@@ -398,19 +400,19 @@ public class BusStaff implements Serializable {
         this.formalDate = formalDate;
     }
 
-    public Date getFormalDateStart() {
+    public String getFormalDateStart() {
         return formalDateStart;
     }
 
-    public void setFormalDateStart(Date formalDateStart) {
+    public void setFormalDateStart(String formalDateStart) {
         this.formalDateStart = formalDateStart;
     }
 
-    public Date getFormalDateEnd() {
+    public String getFormalDateEnd() {
         return formalDateEnd;
     }
 
-    public void setFormalDateEnd(Date formalDateEnd) {
+    public void setFormalDateEnd(String formalDateEnd) {
         this.formalDateEnd = formalDateEnd;
     }
 
@@ -494,19 +496,19 @@ public class BusStaff implements Serializable {
         this.workAge = workAge;
     }
 
-    public Date getWorkDateStart() {
+    public String getWorkDateStart() {
         return workDateStart;
     }
 
-    public void setWorkDateStart(Date workDateStart) {
+    public void setWorkDateStart(String workDateStart) {
         this.workDateStart = workDateStart;
     }
 
-    public Date getWorkDateEnd() {
+    public String getWorkDateEnd() {
         return workDateEnd;
     }
 
-    public void setWorkDateEnd(Date workDateEnd) {
+    public void setWorkDateEnd(String workDateEnd) {
         this.workDateEnd = workDateEnd;
     }
 
@@ -526,19 +528,19 @@ public class BusStaff implements Serializable {
         this.graduateDate = graduateDate;
     }
 
-    public Date getGraduateDateStart() {
+    public String getGraduateDateStart() {
         return graduateDateStart;
     }
 
-    public void setGraduateDateStart(Date graduateDateStart) {
+    public void setGraduateDateStart(String graduateDateStart) {
         this.graduateDateStart = graduateDateStart;
     }
 
-    public Date getGraduateDateEnd() {
+    public String getGraduateDateEnd() {
         return graduateDateEnd;
     }
 
-    public void setGraduateDateEnd(Date graduateDateEnd) {
+    public void setGraduateDateEnd(String graduateDateEnd) {
         this.graduateDateEnd = graduateDateEnd;
     }
 
@@ -1182,6 +1184,14 @@ public class BusStaff implements Serializable {
         this.studentLineIdList = studentLineIdList;
     }
 
+    public List<BusProject> getBusProjectList() {
+        return busProjectList;
+    }
+
+    public void setBusProjectList(List<BusProject> busProjectList) {
+        this.busProjectList = busProjectList;
+    }
+
     public List<BusProjectExp> getBusProjectExpList() {
         return busProjectExpList;
     }
@@ -1196,13 +1206,5 @@ public class BusStaff implements Serializable {
 
     public void setBusJpExpList(List<BusJpExp> busJpExpList) {
         this.busJpExpList = busJpExpList;
-    }
-
-    public List<BusProject> getBusProjectList() {
-        return busProjectList;
-    }
-
-    public void setBusProjectList(List<BusProject> busProjectList) {
-        this.busProjectList = busProjectList;
     }
 }

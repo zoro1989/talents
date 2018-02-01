@@ -99,20 +99,61 @@
                   #{item}
                 </foreach>
             </if>
+            <if test="(joinDayStart == null or joinDayStart =='') and joinDayEnd != null and joinDayEnd !='' ">
+                and join_day &lt;= #{joinDayEnd}
+            </if>
+            <if test="joinDayStart != null and joinDayStart !='' and (joinDayEnd == null or joinDayEnd =='') ">
+                and join_day &gt;= #{joinDayStart}
+            </if>
             <if test="joinDayStart != null and joinDayStart !='' and joinDayEnd != null and joinDayEnd !='' ">
                 and join_day between #{joinDayStart} and #{joinDayEnd}
+            </if>
+
+            <if test="(practiceStartDateStart == null or practiceStartDateStart =='') and practiceStartDateEnd != null and practiceStartDateEnd !='' ">
+                and practice_start_date &lt;= #{practiceStartDateEnd}
+            </if>
+            <if test="practiceStartDateStart != null and practiceStartDateStart !='' and (practiceStartDateEnd == null or practiceStartDateEnd =='') ">
+                and practice_start_date &gt;= #{practiceStartDateStart}
             </if>
             <if test="practiceStartDateStart != null and practiceStartDateStart !='' and practiceStartDateEnd != null and practiceStartDateEnd !='' ">
               and practice_start_date between #{practiceStartDateStart} and #{practiceStartDateEnd}
             </if>
+
+            <if test="(practiceEndDateStart == null or practiceEndDateStart =='') and practiceEndDateEnd != null and practiceEndDateEnd !='' ">
+                and practice_end_date &lt;= #{practiceEndDateEnd}
+            </if>
+            <if test="practiceEndDateStart != null and practiceEndDateStart !='' and (practiceEndDateEnd == null or practiceEndDateEnd =='') ">
+                and practice_end_date &gt;= #{practiceEndDateStart}
+            </if>
             <if test="practiceEndDateStart != null and practiceEndDateStart !='' and practiceEndDateEnd != null and practiceEndDateEnd !='' ">
               and practice_end_date between #{practiceEndDateStart} and #{practiceEndDateEnd}
+            </if>
+
+            <if test="(trialStartDateStart == null or trialStartDateStart =='') and trialStartDateEnd != null and trialStartDateEnd !='' ">
+                and trial_start_date &lt;= #{trialStartDateEnd}
+            </if>
+            <if test="trialStartDateStart != null and trialStartDateStart !='' and (trialStartDateEnd == null or trialStartDateEnd =='') ">
+                and trial_start_date &gt;= #{trialStartDateStart}
             </if>
             <if test="trialStartDateStart != null and trialStartDateStart !='' and trialStartDateEnd != null and trialStartDateEnd !='' ">
               and trial_start_date between #{trialStartDateStart} and #{trialStartDateEnd}
             </if>
+
+            <if test="(trialEndDateStart == null or trialEndDateStart =='') and trialEndDateEnd != null and trialEndDateEnd !='' ">
+                and practice_end_date &lt;= #{trialEndDateEnd}
+            </if>
+            <if test="trialEndDateStart != null and trialEndDateStart !='' and (trialEndDateEnd == null or trialEndDateEnd =='') ">
+                and practice_end_date &gt;= #{trialEndDateStart}
+            </if>
             <if test="trialEndDateStart != null and trialEndDateStart !='' and trialEndDateEnd != null and trialEndDateEnd !='' ">
               and practice_end_date between #{trialEndDateStart} and #{trialEndDateEnd}
+            </if>
+
+            <if test="(formalDateStart == null or formalDateStart =='') and formalDateEnd != null and formalDateEnd !='' ">
+                and formal_date &lt;= #{formalDateEnd}
+            </if>
+            <if test="formalDateStart != null and formalDateStart !='' and (formalDateEnd == null or formalDateEnd =='') ">
+                and formal_date &gt;= #{formalDateStart}
             </if>
             <if test="formalDateStart != null and formalDateStart !='' and formalDateEnd != null and formalDateEnd !='' ">
               and formal_date between #{formalDateStart} and #{formalDateEnd}
@@ -123,20 +164,62 @@
                 #{item}
               </foreach>
             </if>
+
+            <if test="(befworkAgeStart == null or befworkAgeStart =='') and befworkAgeEnd != null and befworkAgeEnd !='' ">
+                and befwork_age &lt;= #{befworkAgeEnd}
+            </if>
+            <if test="befworkAgeStart != null and befworkAgeStart !='' and (befworkAgeEnd == null or befworkAgeEnd =='') ">
+                and befwork_age &gt;= #{befworkAgeStart}
+            </if>
             <if test="befworkAgeStart != null and befworkAgeStart !='' and befworkAgeEnd != null and befworkAgeEnd !='' ">
               and befwork_age between #{befworkAgeStart} and #{befworkAgeEnd}
+            </if>
+
+            <if test="(cmpbefworkAgeStart == null or cmpbefworkAgeStart =='') and cmpbefworkAgeEnd != null and cmpbefworkAgeEnd !='' ">
+                and cmpbefwork_age &lt;= #{cmpbefworkAgeEnd}
+            </if>
+            <if test="cmpbefworkAgeStart != null and cmpbefworkAgeStart !='' and (cmpbefworkAgeEnd == null or cmpbefworkAgeEnd =='') ">
+                and cmpbefwork_age &gt;= #{cmpbefworkAgeStart}
             </if>
             <if test="cmpbefworkAgeStart != null and cmpbefworkAgeStart !='' and cmpbefworkAgeEnd != null and befworkAgeEnd !='' ">
               and cmpbefwork_age between #{cmpbefworkAgeStart} and #{cmpbefworkAgeEnd}
             </if>
+
+            <if test="(aftworkAgeStart == null or aftworkAgeStart =='') and aftworkAgeEnd != null and aftworkAgeEnd !='' ">
+                and aftwork_age &lt;= #{aftworkAgeEnd}
+            </if>
+            <if test="aftworkAgeStart != null and aftworkAgeStart !='' and (aftworkAgeEnd == null or aftworkAgeEnd =='') ">
+                and aftwork_age &gt;= #{aftworkAgeStart}
+            </if>
             <if test="aftworkAgeStart != null and aftworkAgeStart !='' and aftworkAgeEnd != null and aftworkAgeEnd !='' ">
               and aftwork_age between #{aftworkAgeStart} and #{aftworkAgeEnd}
+            </if>
+
+            <if test="(workAgeStart == null or workAgeStart =='') and workAgeEnd != null and workAgeEnd !='' ">
+                and work_age &lt;= #{workAgeEnd}
+            </if>
+            <if test="workAgeStart != null and workAgeStart !='' and (workAgeEnd == null or workAgeEnd =='') ">
+                and work_age &gt;= #{workAgeStart}
             </if>
             <if test="workAgeStart != null and workAgeStart !='' and workAgeEnd != null and workAgeEnd !='' ">
               and work_age between #{workAgeStart} and #{workAgeEnd}
             </if>
+
+            <if test="(workDateStart == null or workDateStart =='') and workDateEnd != null and workDateEnd !='' ">
+                and work_date &lt;= #{workDateEnd}
+            </if>
+            <if test="workDateStart != null and workDateStart !='' and (workDateEnd == null or workDateEnd =='') ">
+                and work_date &gt;= #{workDateStart}
+            </if>
             <if test="workDateStart != null and workDateStart !='' and workDateEnd != null and workDateEnd !='' ">
               and work_date between #{workDateStart} and #{workDateEnd}
+            </if>
+
+            <if test="(graduateDateStart == null or graduateDateStart =='') and graduateDateEnd != null and graduateDateEnd !='' ">
+                and graduate_date &lt;= #{graduateDateEnd}
+            </if>
+            <if test="graduateDateStart != null and graduateDateStart !='' and (graduateDateEnd == null or graduateDateEnd =='') ">
+                and graduate_date &gt;= #{graduateDateStart}
             </if>
             <if test="graduateDateStart != null and graduateDateStart !='' and graduateDateEnd != null and graduateDateEnd !='' ">
               and graduate_date between #{graduateDateStart} and #{graduateDateEnd}
@@ -205,9 +288,9 @@
                 #{item}
               </foreach>
             </if>
-            <if test="yesNoIdList != null and yesNoIdList.size() != 0">
+            <if test="departmentIdList != null and departmentIdList.size() != 0">
               and department in
-              <foreach item="item" index="index" open="(" separator="," close=")" collection="yesNoIdList">
+              <foreach item="item" index="index" open="(" separator="," close=")" collection="departmentIdList">
                 #{item}
               </foreach>
             </if>

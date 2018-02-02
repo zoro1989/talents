@@ -1,45 +1,96 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ccbjb.common.mapper.BusProjectMapper">
+    <resultMap id="BaseResultMap" type="BusProject">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="proj_name" property="projName" jdbcType="VARCHAR" />
+        <result column="start_date" property="startDate" jdbcType="DATE" />
+        <result column="end_date" property="endDate" jdbcType="DATE" />
+        <result column="dev_language" property="devLanguage" jdbcType="INTEGER" />
+        <result column="operate_sys" property="operateSys" jdbcType="INTEGER" />
+        <result column="dev_tool" property="devTool" jdbcType="INTEGER" />
+        <result column="dev_database" property="devDatabase" jdbcType="INTEGER" />
+        <result column="dev_app_server" property="devAppServer" jdbcType="INTEGER" />
+        <result column="dev_framework" property="devFramework" jdbcType="INTEGER" />
+        <result column="service_customer" property="serviceCustomer" jdbcType="INTEGER" />
+        <result column="bus_type" property="busType" jdbcType="INTEGER" />
+        <result column="contract_count" property="contractCount" jdbcType="DECIMAL" />
+        <result column="put_count" property="putCount" jdbcType="DECIMAL" />
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+    </resultMap>
+    <resultMap id="findAllProjectResultMap" type="BusProject" extends="BaseResultMap">
+        <collection property="projectItems" javaType="BusProject">
+            <id column="id_s" property="id" jdbcType="BIGINT" />
+            <result column="proj_name_s" property="projName" jdbcType="VARCHAR" />
+            <result column="start_date_s" property="startDate" jdbcType="DATE" />
+            <result column="end_date_s" property="endDate" jdbcType="DATE" />
+            <result column="service_customer_s" property="serviceCustomer" jdbcType="INTEGER" />
+            <result column="contract_count_s" property="contractCount" jdbcType="DECIMAL" />
+            <result column="put_count_s" property="putCount" jdbcType="DECIMAL" />
+        </collection>
+    </resultMap>
     <sql id="Base_Column_List">
-        id,
-        proj_name,
-        start_date,
-        end_date,
-        dev_language,
-        operate_sys,
-        dev_tool,
-        dev_database,
-        dev_app_server,
-        dev_framework,
-        service_customer,
-        bus_type,
-        contract_count,
-        put_count,
-        parent_id
+        p.id,
+        p.proj_name,
+        p.start_date,
+        p.end_date,
+        p.dev_language,
+        p.operate_sys,
+        p.dev_tool,
+        p.dev_database,
+        p.dev_app_server,
+        p.dev_framework,
+        p.service_customer,
+        p.bus_type,
+        p.contract_count,
+        p.put_count,
+        p.parent_id
     </sql>
 
     <sql id="where_all">
         <where>
             <if test="findContent != null and findContent !='' " >
                 and (
-                LOWER(proj_name) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%")
+                LOWER(p.proj_name) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%")
                 )
             </if>
-            and parent_id IS NULL
+            and p.parent_id IS NULL
         </where>
     </sql>
-    <select id="findAllProject" resultType="BusProject">
+    <select id="findAllProject" resultMap="findAllProjectResultMap">
         select
-        <include refid="Base_Column_List"/>
-        from bus_project
+        p.id,
+        p.proj_name,
+        p.start_date,
+        p.end_date,
+        p.dev_language,
+        p.operate_sys,
+        p.dev_tool,
+        p.dev_database,
+        p.dev_app_server,
+        p.dev_framework,
+        p.service_customer,
+        p.bus_type,
+        p.contract_count,
+        p.put_count,
+        p.parent_id,
+        s.id as id_s,
+        s.proj_name as proj_name_s,
+        s.start_date as start_date_s,
+        s.end_date as end_date_s,
+        s.service_customer as service_customer_s,
+        s.contract_count as contract_count_s,
+        s.put_count as put_count_s
+        from bus_project p
+        left join bus_project s
+          on p.id = s.parent_id
         <include refid="where_all"/>
     </select>
     <select id="findProjectItems" resultType="BusProject">
         select
         <include refid="Base_Column_List"/>
-        FROM bus_project
+        FROM bus_project p
         where
-        parent_id = #{parentId}
+        p.parent_id = #{parentId}
     </select>
 </mapper>

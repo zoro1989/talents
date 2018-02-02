@@ -2,17 +2,20 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ccbjb.common.mapper.BusProjectExpMapper">
     <sql id="Base_Column_List">
-        id,
-        staff_id,
-        project_id,
-        start_date,
-        end_date
+        e.id,
+        e.staff_id,
+        e.project_id,
+        e.start_date,
+        e.end_date,
+        p.proj_name
     </sql>
 
     <select id="findProjectExpByStaffId" resultType="BusProjectExp">
         select
         <include refid="Base_Column_List"/>
-        from bus_project_exp
+        from bus_project_exp e
+        left join bus_project p
+          on e.project_id = p.id
         where staff_id = #{staffId}
     </select>
     <delete id="deleteByStaffId">

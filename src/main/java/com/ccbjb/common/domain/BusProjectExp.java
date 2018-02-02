@@ -15,6 +15,8 @@ public class BusProjectExp implements Serializable {
     private Long projectId;
     private Date startDate;
     private Date endDate;
+    @Transient
+    private String projName;
 
     public Long getId() {
         return id;
@@ -54,5 +56,13 @@ public class BusProjectExp implements Serializable {
 
     public void setEndDate(Date endDate) {
         this.endDate = endDate;
+    }
+
+    public String getProjName() {
+        return projName;
+    }
+
+    public void setProjName(String projName) {
+        this.projName = projName;
     }
 }

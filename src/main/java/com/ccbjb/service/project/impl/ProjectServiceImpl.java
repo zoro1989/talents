@@ -3,6 +3,7 @@ package com.ccbjb.service.project.impl;
 import com.ccbjb.common.domain.BusProject;
 import com.ccbjb.common.domain.BusStaff;
 import com.ccbjb.common.mybatis.Result;
+import com.ccbjb.common.mybatis.ResultCode;
 import com.ccbjb.common.mybatis.ResultGenerator;
 import com.ccbjb.common.utils.LoggerUtils;
 import com.ccbjb.common.utils.StringUtils;
@@ -14,6 +15,7 @@ import com.ccbjb.model.project.ProjectAnalyzeModel;
 import com.ccbjb.service.project.IProjectService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -134,8 +136,13 @@ public class ProjectServiceImpl implements IProjectService {
 			String resultMsg = "";
 
 			for (Long id : ids) {
-				this.deleteByPrimaryKey(id);
-				count++;
+				List<BusProject> items = busProjectDao.findProjectItems(id);
+				if(CollectionUtils.isEmpty(items)){
+					this.deleteByPrimaryKey(id);
+					count++;
+				}else {
+					return ResultGenerator.genFailResult(ResultCode.ERR_113);
+				}
 			}
 			resultMsg = "成功删除"+count+"个项目！";
 			result = ResultGenerator.genSuccessResult(resultMsg);

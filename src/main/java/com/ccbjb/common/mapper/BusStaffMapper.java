@@ -13,5 +13,6 @@ import java.util.Set;
 
 public interface BusStaffMapper extends TKMMapper<BusStaff> {
     List<BusStaff> findAllStaff(BusStaff busStaff);
-    List<ChartDataModel> getPieDataByDicType(@Param("dicType") String dicType);
+    List<ChartDataModel> getChartPersonDataByDicType(@Param("dicType") String dicType);
+    List<ChartDataModel> getChartProjectDataByDicType(@Param("dicType") String dicType);
 }

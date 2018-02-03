@@ -17,4 +17,6 @@ public interface SysDicDao extends BaseDao<SysDic> {
     List<SysDic> findDicParents();
 
     List<SysDic> findDicParentByType(String type);
+
+    List<SysDic> findDicItems(Long parentId);
 }

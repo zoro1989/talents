@@ -36,8 +36,13 @@ public class BusStaffDaoImpl extends AbstractDao<BusStaff> implements BusStaffDa
     }
 
     @Override
-    public List<ChartDataModel> getPieDataByDicType(String dicType) {
-        return busStaffMapper.getPieDataByDicType(dicType);
+    public List<ChartDataModel> getChartPersonDataByDicType(String dicType) {
+        return busStaffMapper.getChartPersonDataByDicType(dicType);
+    }
+
+    @Override
+    public List<ChartDataModel> getChartProjectDataByDicType(String dicType) {
+        return busStaffMapper.getChartProjectDataByDicType(dicType);
     }
 
 

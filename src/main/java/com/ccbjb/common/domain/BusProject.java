@@ -27,6 +27,7 @@ public class BusProject implements Serializable {
     private Long parentId;
     @Transient
     private List<BusProject> projectItems = new ArrayList<>();
+
     @Transient
     private List<SysDic> devLanguageList = new ArrayList<>();
     @Transient

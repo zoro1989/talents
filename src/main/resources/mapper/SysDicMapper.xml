@@ -1,7 +1,22 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.ccbjb.common.mapper.SysDicMapper">
-
+    <resultMap id="BaseResultMap" type="SysDic">
+        <id column="id" property="id" jdbcType="BIGINT" />
+        <result column="dic_value" property="dicValue" jdbcType="VARCHAR" />
+        <result column="dic_label" property="dicLabel" jdbcType="VARCHAR" />
+        <result column="parent_id" property="parentId" jdbcType="BIGINT" />
+        <result column="type" property="type" jdbcType="INTEGER" />
+    </resultMap>
+    <resultMap id="findAllDicResultMap" type="SysDic" extends="BaseResultMap">
+        <collection property="dicItems" javaType="SysDic">
+            <id column="id_s" property="id" jdbcType="BIGINT" />
+            <result column="dic_value_s" property="dicValue" jdbcType="VARCHAR" />
+            <result column="dic_label_s" property="dicLabel" jdbcType="VARCHAR" />
+            <result column="parent_id_s" property="parentId" jdbcType="BIGINT" />
+            <result column="type_s" property="type" jdbcType="INTEGER" />
+        </collection>
+    </resultMap>
     <sql id="Base_Column_List">
         id,
         dic_value,
@@ -14,21 +29,33 @@
         <where>
             <if test="findContent != null and findContent !='' " >
                 and (
-                LOWER(dic_value) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%") or
-                LOWER(dic_label) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%")
+                LOWER(p.dic_value) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%") or
+                LOWER(p.dic_label) like CONCAT("%",#{findContent,jdbcType=VARCHAR},"%")
                 )
             </if>
+            and p.parent_id IS NULL
         </where>
     </sql>
-    <select id="findAllDic" resultType="SysDic">
+    <select id="findAllDic" resultMap="findAllDicResultMap">
         select
-        <include refid="Base_Column_List"/>
-        from sys_dic
+        p.id,
+        p.dic_value,
+        p.dic_label,
+        p.parent_id,
+        p.type,
+        s.id as id_s,
+        s.dic_value as dic_value_s,
+        s.dic_label as dic_label_s,
+        s.parent_id as parent_id_s,
+        s.type as type_s
+        from sys_dic p
+          left join sys_dic s
+            on p.id = s.parent_id
         <include refid="where_all"/>
     </select>
 
     <select id="selectDicByDicType" resultType="SysDic">
-        select p.id, p.dic_value,p.dic_label,p.parent_id,type
+        select p.id, p.dic_value,p.dic_label,p.parent_id,p.type
         FROM sys_dic p
 		where
 			p.parent_id in (SELECT id from sys_dic where dic_value=#{dicType})
@@ -44,5 +71,12 @@
         FROM sys_dic p
 		where
 			p.type = #{type} AND p.parent_id  IS NULL
+    </select>
+    <select id="findDicItems" resultType="SysDic">
+        select
+        <include refid="Base_Column_List"/>
+        FROM sys_dic
+        where
+        parent_id = #{parentId}
     </select>
 </mapper>

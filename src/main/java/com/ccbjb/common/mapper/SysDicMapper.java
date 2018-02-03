@@ -12,4 +12,5 @@ public interface SysDicMapper extends TKMMapper<SysDic> {
     List<SysDic> findAllDic(Map<String, String> map);
     List<SysDic> findDicParents();
     List<SysDic> findDicParentByType(String type);
+    List<SysDic> findDicItems(Long parentId);
 }

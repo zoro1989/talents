@@ -3,6 +3,7 @@ package com.ccbjb.common.domain;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 public class SysDic implements Serializable{
@@ -13,7 +14,9 @@ public class SysDic implements Serializable{
     private Long parentId;
     private String type;
     @Transient
-    private List<SysDic> dicParents;
+    private List<SysDic> dicParents = new ArrayList<>();
+    @Transient
+    private List<SysDic> dicItems = new ArrayList<>();
 
     public Long getId() {
         return id;
@@ -61,5 +64,13 @@ public class SysDic implements Serializable{
 
     public void setType(String type) {
         this.type = type;
+    }
+
+    public List<SysDic> getDicItems() {
+        return dicItems;
+    }
+
+    public void setDicItems(List<SysDic> dicItems) {
+        this.dicItems = dicItems;
     }
 }

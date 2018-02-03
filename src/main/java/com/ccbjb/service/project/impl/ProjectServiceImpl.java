@@ -94,7 +94,6 @@ public class ProjectServiceImpl implements IProjectService {
 		ProjectAnalyzeModel projectAnalyzeModel = new ProjectAnalyzeModel();
 		projectAnalyzeModel.setPersonalDicList(sysDicDao.findDicParentByType("0"));
 		projectAnalyzeModel.setTechDicList(sysDicDao.findDicParentByType("1"));
-		projectAnalyzeModel.setProjectDicList(sysDicDao.findDicParentByType("2"));
 		return ResultGenerator.genSuccessResult(projectAnalyzeModel);
 	}
 
@@ -102,11 +101,9 @@ public class ProjectServiceImpl implements IProjectService {
 	public Result getChartPieDataByDicType(String type, String dicValue) {
 		List<ChartDataModel> res = new ArrayList<>();
 		if("0".equals(type)) {
-			res = busStaffDao.getPieDataByDicType(dicValue);
+			res = busStaffDao.getChartPersonDataByDicType(dicValue);
 		}else if("1".equals(type)) {
-
-		}else if("2".equals(type)) {
-
+			res = busStaffDao.getChartProjectDataByDicType(dicValue);
 		}
 		return ResultGenerator.genSuccessResult(res);
 	}

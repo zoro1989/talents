@@ -16,5 +16,6 @@ import java.util.Set;
 public interface BusStaffDao extends BaseDao<BusStaff> {
     List<BusStaff> findAllStaff(BusStaff busStaff);
     BusStaff selectInfoById(Long id);
-    List<ChartDataModel> getPieDataByDicType(String dicType);
+    List<ChartDataModel> getChartPersonDataByDicType(String dicType);
+    List<ChartDataModel> getChartProjectDataByDicType(String dicType);
 }

@@ -38,4 +38,9 @@ public class SysDicDaoImpl extends AbstractDao<SysDic> implements SysDicDao {
     public List<SysDic> findDicParentByType(String type) {
         return sysDicMapper.findDicParentByType(type);
     }
+
+    @Override
+    public List<SysDic> findDicItems(Long parentId) {
+        return sysDicMapper.findDicItems(parentId);
+    }
 }

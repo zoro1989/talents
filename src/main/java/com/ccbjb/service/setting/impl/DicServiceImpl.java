@@ -3,6 +3,7 @@ package com.ccbjb.service.setting.impl;
 import com.ccbjb.common.domain.BusProject;
 import com.ccbjb.common.domain.SysDic;
 import com.ccbjb.common.mybatis.Result;
+import com.ccbjb.common.mybatis.ResultCode;
 import com.ccbjb.common.mybatis.ResultGenerator;
 import com.ccbjb.common.utils.LoggerUtils;
 import com.ccbjb.common.utils.StringUtils;
@@ -12,6 +13,7 @@ import com.ccbjb.service.project.IProjectService;
 import com.ccbjb.service.setting.IDicService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
+import org.apache.commons.collections.CollectionUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -76,8 +78,13 @@ public class DicServiceImpl implements IDicService {
 			String resultMsg = "";
 
 			for (Long id : ids) {
-				this.deleteByPrimaryKey(id);
-				count++;
+				List<SysDic> dicItems = sysDicDao.findDicItems(id);
+				if(CollectionUtils.isEmpty(dicItems)){
+					this.deleteByPrimaryKey(id);
+					count++;
+				}else {
+					return ResultGenerator.genFailResult(ResultCode.ERR_113);
+				}
 			}
 			resultMsg = "成功删除"+count+"个字典！";
 			result = ResultGenerator.genSuccessResult(resultMsg);

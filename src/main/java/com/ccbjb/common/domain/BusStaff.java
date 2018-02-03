@@ -149,6 +149,14 @@ public class BusStaff implements Serializable {
     private List<SysDic> nationList = new ArrayList<>();
     @Transient
     private List<SysDic> countryList = new ArrayList<>();
+
+    @Transient
+    private List<SysDic> ismarriedList = new ArrayList<>();
+    @Transient
+    private List<SysDic> hasbabyList = new ArrayList<>();
+    @Transient
+    private List<SysDic> ispartiedList = new ArrayList<>();
+
     @Transient
     private List<SysDic> validList = new ArrayList<>();
     @Transient
@@ -182,6 +190,14 @@ public class BusStaff implements Serializable {
     private List<String> nationIdList = new ArrayList<>();
     @Transient
     private List<String> countryIdList = new ArrayList<>();
+
+    @Transient
+    private List<String> ismarriedIdList = new ArrayList<>();
+    @Transient
+    private List<String> hasbabyIdList = new ArrayList<>();
+    @Transient
+    private List<String> ispartiedIdList = new ArrayList<>();
+
     @Transient
     private List<String> validIdList = new ArrayList<>();
     @Transient
@@ -199,6 +215,44 @@ public class BusStaff implements Serializable {
     private List<BusProjectExp> busProjectExpList = new ArrayList<>();
     @Transient
     private List<BusJpExp> busJpExpList = new ArrayList<>();
+
+    @Transient
+    private List<SysDic> devLanguageList = new ArrayList<>();
+    @Transient
+    private List<SysDic> operateSysList = new ArrayList<>();
+    @Transient
+    private List<SysDic> devToolList = new ArrayList<>();
+    @Transient
+    private List<SysDic> devDatabaseList = new ArrayList<>();
+    @Transient
+    private List<SysDic> devAppServerList = new ArrayList<>();
+    @Transient
+    private List<SysDic> devFrameworkList = new ArrayList<>();
+    @Transient
+    private List<SysDic> serviceCustomerList = new ArrayList<>();
+    @Transient
+    private List<SysDic> busTypeList = new ArrayList<>();
+
+    @Transient
+    private List<String> devLanguageIdList = new ArrayList<>();
+    @Transient
+    private List<String> operateSysIdList = new ArrayList<>();
+    @Transient
+    private List<String> devToolIdList = new ArrayList<>();
+    @Transient
+    private List<String> devDatabaseIdList = new ArrayList<>();
+    @Transient
+    private List<String> devAppServerIdList = new ArrayList<>();
+    @Transient
+    private List<String> devFrameworkIdList = new ArrayList<>();
+    @Transient
+    private List<String> serviceCustomerIdList = new ArrayList<>();
+    @Transient
+    private List<String> busTypeIdList = new ArrayList<>();
+
+    @Transient
+    private String selectedProjectId;
+
 
     public Long getId() {
         return id;
@@ -1206,5 +1260,189 @@ public class BusStaff implements Serializable {
 
     public void setBusJpExpList(List<BusJpExp> busJpExpList) {
         this.busJpExpList = busJpExpList;
+    }
+
+    public List<SysDic> getDevLanguageList() {
+        return devLanguageList;
+    }
+
+    public void setDevLanguageList(List<SysDic> devLanguageList) {
+        this.devLanguageList = devLanguageList;
+    }
+
+    public List<SysDic> getOperateSysList() {
+        return operateSysList;
+    }
+
+    public void setOperateSysList(List<SysDic> operateSysList) {
+        this.operateSysList = operateSysList;
+    }
+
+    public List<SysDic> getDevToolList() {
+        return devToolList;
+    }
+
+    public void setDevToolList(List<SysDic> devToolList) {
+        this.devToolList = devToolList;
+    }
+
+    public List<SysDic> getDevDatabaseList() {
+        return devDatabaseList;
+    }
+
+    public void setDevDatabaseList(List<SysDic> devDatabaseList) {
+        this.devDatabaseList = devDatabaseList;
+    }
+
+    public List<SysDic> getDevAppServerList() {
+        return devAppServerList;
+    }
+
+    public void setDevAppServerList(List<SysDic> devAppServerList) {
+        this.devAppServerList = devAppServerList;
+    }
+
+    public List<SysDic> getDevFrameworkList() {
+        return devFrameworkList;
+    }
+
+    public void setDevFrameworkList(List<SysDic> devFrameworkList) {
+        this.devFrameworkList = devFrameworkList;
+    }
+
+    public List<SysDic> getServiceCustomerList() {
+        return serviceCustomerList;
+    }
+
+    public void setServiceCustomerList(List<SysDic> serviceCustomerList) {
+        this.serviceCustomerList = serviceCustomerList;
+    }
+
+    public List<SysDic> getBusTypeList() {
+        return busTypeList;
+    }
+
+    public void setBusTypeList(List<SysDic> busTypeList) {
+        this.busTypeList = busTypeList;
+    }
+
+    public List<String> getDevLanguageIdList() {
+        return devLanguageIdList;
+    }
+
+    public void setDevLanguageIdList(List<String> devLanguageIdList) {
+        this.devLanguageIdList = devLanguageIdList;
+    }
+
+    public List<String> getOperateSysIdList() {
+        return operateSysIdList;
+    }
+
+    public void setOperateSysIdList(List<String> operateSysIdList) {
+        this.operateSysIdList = operateSysIdList;
+    }
+
+    public List<String> getDevToolIdList() {
+        return devToolIdList;
+    }
+
+    public void setDevToolIdList(List<String> devToolIdList) {
+        this.devToolIdList = devToolIdList;
+    }
+
+    public List<String> getDevDatabaseIdList() {
+        return devDatabaseIdList;
+    }
+
+    public void setDevDatabaseIdList(List<String> devDatabaseIdList) {
+        this.devDatabaseIdList = devDatabaseIdList;
+    }
+
+    public List<String> getDevAppServerIdList() {
+        return devAppServerIdList;
+    }
+
+    public void setDevAppServerIdList(List<String> devAppServerIdList) {
+        this.devAppServerIdList = devAppServerIdList;
+    }
+
+    public List<String> getDevFrameworkIdList() {
+        return devFrameworkIdList;
+    }
+
+    public void setDevFrameworkIdList(List<String> devFrameworkIdList) {
+        this.devFrameworkIdList = devFrameworkIdList;
+    }
+
+    public List<String> getServiceCustomerIdList() {
+        return serviceCustomerIdList;
+    }
+
+    public void setServiceCustomerIdList(List<String> serviceCustomerIdList) {
+        this.serviceCustomerIdList = serviceCustomerIdList;
+    }
+
+    public List<String> getBusTypeIdList() {
+        return busTypeIdList;
+    }
+
+    public void setBusTypeIdList(List<String> busTypeIdList) {
+        this.busTypeIdList = busTypeIdList;
+    }
+
+    public String getSelectedProjectId() {
+        return selectedProjectId;
+    }
+
+    public void setSelectedProjectId(String selectedProjectId) {
+        this.selectedProjectId = selectedProjectId;
+    }
+
+    public List<SysDic> getIsmarriedList() {
+        return ismarriedList;
+    }
+
+    public void setIsmarriedList(List<SysDic> ismarriedList) {
+        this.ismarriedList = ismarriedList;
+    }
+
+    public List<SysDic> getHasbabyList() {
+        return hasbabyList;
+    }
+
+    public void setHasbabyList(List<SysDic> hasbabyList) {
+        this.hasbabyList = hasbabyList;
+    }
+
+    public List<SysDic> getIspartiedList() {
+        return ispartiedList;
+    }
+
+    public void setIspartiedList(List<SysDic> ispartiedList) {
+        this.ispartiedList = ispartiedList;
+    }
+
+    public List<String> getIsmarriedIdList() {
+        return ismarriedIdList;
+    }
+
+    public void setIsmarriedIdList(List<String> ismarriedIdList) {
+        this.ismarriedIdList = ismarriedIdList;
+    }
+
+    public List<String> getHasbabyIdList() {
+        return hasbabyIdList;
+    }
+
+    public void setHasbabyIdList(List<String> hasbabyIdList) {
+        this.hasbabyIdList = hasbabyIdList;
+    }
+
+    public List<String> getIspartiedIdList() {
+        return ispartiedIdList;
+    }
+
+    public void setIspartiedIdList(List<String> ispartiedIdList) {
+        this.ispartiedIdList = ispartiedIdList;
     }
 }

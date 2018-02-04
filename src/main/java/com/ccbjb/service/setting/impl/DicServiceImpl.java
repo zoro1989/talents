@@ -1,15 +1,12 @@
 package com.ccbjb.service.setting.impl;
 
-import com.ccbjb.common.domain.BusProject;
 import com.ccbjb.common.domain.SysDic;
 import com.ccbjb.common.mybatis.Result;
 import com.ccbjb.common.mybatis.ResultCode;
 import com.ccbjb.common.mybatis.ResultGenerator;
 import com.ccbjb.common.utils.LoggerUtils;
 import com.ccbjb.common.utils.StringUtils;
-import com.ccbjb.dao.BusProjectDao;
 import com.ccbjb.dao.SysDicDao;
-import com.ccbjb.service.project.IProjectService;
 import com.ccbjb.service.setting.IDicService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;

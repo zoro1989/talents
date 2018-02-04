@@ -1,7 +1,7 @@
 package com.ccbjb.service.project.impl;
 
+import com.ccbjb.common.consts.Const;
 import com.ccbjb.common.domain.BusProject;
-import com.ccbjb.common.domain.BusStaff;
 import com.ccbjb.common.mybatis.Result;
 import com.ccbjb.common.mybatis.ResultCode;
 import com.ccbjb.common.mybatis.ResultGenerator;
@@ -10,6 +10,7 @@ import com.ccbjb.common.utils.StringUtils;
 import com.ccbjb.dao.BusProjectDao;
 import com.ccbjb.dao.BusStaffDao;
 import com.ccbjb.dao.SysDicDao;
+import com.ccbjb.model.project.BusProjectModel;
 import com.ccbjb.model.project.ChartDataModel;
 import com.ccbjb.model.project.ProjectAnalyzeModel;
 import com.ccbjb.service.project.IProjectService;
@@ -40,11 +41,50 @@ public class ProjectServiceImpl implements IProjectService {
 						   Integer pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
 		List<BusProject> list = busProjectDao.findAllProject(map);
+		List<BusProjectModel> modelList = this.normalizeProjectModel(list);
 		PageInfo pageInfo = new PageInfo(list);
-
+		pageInfo.setList(modelList);
 		return ResultGenerator.genSuccessResult(pageInfo);
 	}
 
+	private List<BusProjectModel> normalizeProjectModel(List<BusProject> list) {
+		List<BusProjectModel> modelList = new ArrayList<>();
+		for (BusProject project : list) {
+			BusProjectModel model = new BusProjectModel();
+			model.setId(project.getId());
+			model.setProjName(project.getProjName());
+			model.setStartDate(project.getStartDate());
+			model.setEndDate(project.getEndDate());
+			if (project.getServiceCustomer()!=null && Const.ServiceCustomerEnum.NRI.getCode() == project.getServiceCustomer()) {
+				model.setServiceCustomer(Const.ServiceCustomerEnum.NRI.getValue());
+			}else if(project.getServiceCustomer()!=null && Const.ServiceCustomerEnum.MYT.getCode() == project.getServiceCustomer()) {
+				model.setServiceCustomer(Const.ServiceCustomerEnum.MYT.getValue());
+			}
+			model.setContractCount(project.getContractCount());
+			model.setPutCount(project.getPutCount());
+			List<BusProject> projectItems = project.getProjectItems();
+			List<BusProjectModel> modelItemList = new ArrayList<>();
+			for (BusProject item : projectItems) {
+				BusProjectModel itemModel = new BusProjectModel();
+				itemModel.setId(item.getId());
+				itemModel.setProjName(item.getProjName());
+				itemModel.setStartDate(item.getStartDate());
+				itemModel.setEndDate(item.getEndDate());
+				if (item.getServiceCustomer()!=null && Const.ServiceCustomerEnum.NRI.getCode() == item.getServiceCustomer()) {
+					itemModel.setServiceCustomer(Const.ServiceCustomerEnum.NRI.getValue());
+				}else if(item.getServiceCustomer()!=null && Const.ServiceCustomerEnum.MYT.getCode() == item.getServiceCustomer()) {
+					itemModel.setServiceCustomer(Const.ServiceCustomerEnum.MYT.getValue());
+				}
+				itemModel.setContractCount(item.getContractCount());
+				itemModel.setPutCount(item.getPutCount());
+				modelItemList.add(itemModel);
+			}
+
+			model.setProjectItems(modelItemList);
+			modelList.add(model);
+		}
+		return modelList;
+	}
 	@Override
 	@Transactional
 	public void insertSelective(BusProject busProject) {

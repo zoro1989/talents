@@ -1,7 +1,7 @@
 package com.ccbjb.service.staff.impl;
 
+import com.ccbjb.common.consts.Const;
 import com.ccbjb.common.domain.BusJpExp;
-import com.ccbjb.common.domain.BusProject;
 import com.ccbjb.common.domain.BusProjectExp;
 import com.ccbjb.common.domain.BusStaff;
 import com.ccbjb.common.mybatis.Result;
@@ -9,6 +9,7 @@ import com.ccbjb.common.mybatis.ResultGenerator;
 import com.ccbjb.common.utils.LoggerUtils;
 import com.ccbjb.common.utils.StringUtils;
 import com.ccbjb.dao.*;
+import com.ccbjb.model.staff.BusStaffModel;
 import com.ccbjb.service.staff.IStaffService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -16,6 +17,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -72,11 +74,64 @@ public class StaffServiceImpl implements IStaffService {
 						   Integer pageSize) {
 		PageHelper.startPage(pageNo, pageSize);
 		List<BusStaff> list = busStaffDao.findAllStaff(busStaff);
+		List<BusStaffModel> modelList = this.normalizeStaffModel(list);
 		PageInfo pageInfo = new PageInfo(list);
+		pageInfo.setList(modelList);
 
 		return ResultGenerator.genSuccessResult(pageInfo);
 	}
 
+	private List<BusStaffModel> normalizeStaffModel(List<BusStaff> list) {
+		List<BusStaffModel> modelList = new ArrayList<>();
+		for (BusStaff staff: list) {
+			BusStaffModel model = new BusStaffModel();
+			model.setId(staff.getId());
+			model.setStaffNo(staff.getStaffNo());
+			model.setName(staff.getName());
+			model.setNameKana(staff.getNameKana());
+			if (staff.getDuty()!=null && Const.DutyEnum.PG.getCode() == staff.getDuty()) {
+				model.setDuty(Const.DutyEnum.PG.getValue());
+			}else if(staff.getDuty()!=null && Const.DutyEnum.SE.getCode() == staff.getDuty()) {
+				model.setDuty(Const.DutyEnum.SE.getValue());
+			}else if(staff.getDuty()!=null && Const.DutyEnum.TL.getCode() == staff.getDuty()){
+				model.setDuty(Const.DutyEnum.TL.getValue());
+			}else if(staff.getDuty()!=null && Const.DutyEnum.SL.getCode() == staff.getDuty()){
+				model.setDuty(Const.DutyEnum.SL.getValue());
+			}else if(staff.getDuty()!=null && Const.DutyEnum.PL.getCode() == staff.getDuty()){
+				model.setDuty(Const.DutyEnum.PL.getValue());
+			}else if(staff.getDuty()!=null && Const.DutyEnum.PM.getCode() == staff.getDuty()){
+				model.setDuty(Const.DutyEnum.PM.getValue());
+			}
+
+			if(staff.getJpLevel()!=null && Const.JpLevelEnum.N4.getCode() == staff.getJpLevel()) {
+				model.setJpLevel(Const.JpLevelEnum.N4.getValue());
+			}else if(staff.getJpLevel()!=null && Const.JpLevelEnum.N3.getCode() == staff.getJpLevel()) {
+				model.setJpLevel(Const.JpLevelEnum.N3.getValue());
+			}else if(staff.getJpLevel()!=null && Const.JpLevelEnum.N2.getCode() == staff.getJpLevel()) {
+				model.setJpLevel(Const.JpLevelEnum.N2.getValue());
+			}else if(staff.getJpLevel()!=null && Const.JpLevelEnum.N1.getCode() == staff.getJpLevel()) {
+				model.setJpLevel(Const.JpLevelEnum.N1.getValue());
+			}else {
+				model.setJpLevel(Const.JpLevelEnum.OTHER.getValue());
+			}
+			model.setWorkAge(staff.getWorkAge());
+			if(staff.getDepartment()!=null && Const.DepartmentEnum.MYT.getCode() == staff.getDepartment()) {
+				model.setDepartment(Const.DepartmentEnum.MYT.getValue());
+			}else if(staff.getDepartment()!=null && Const.DepartmentEnum.NRI.getCode() == staff.getDepartment()) {
+				model.setDepartment(Const.DepartmentEnum.NRI.getValue());
+			}else if(staff.getDepartment()!=null && Const.DepartmentEnum.FINANCE.getCode() == staff.getDepartment()) {
+				model.setDepartment(Const.DepartmentEnum.FINANCE.getValue());
+			}else if(staff.getDepartment()!=null && Const.DepartmentEnum.ADMIN.getCode() == staff.getDepartment()) {
+				model.setDepartment(Const.DepartmentEnum.ADMIN.getValue());
+			}else if(staff.getDepartment()!=null && Const.DepartmentEnum.NET.getCode() == staff.getDepartment()) {
+				model.setDepartment(Const.DepartmentEnum.NET.getValue());
+			}else {
+				model.setDepartment(Const.DepartmentEnum.OTHER.getValue());
+			}
+			modelList.add(model);
+		}
+		return modelList;
+	}
 	@Override
 	@Transactional
 	public Result selectInfoById(Long id) {

@@ -1,6 +1,7 @@
 package com.ccbjb.model.staff;
 
 import java.io.Serializable;
+import java.math.BigDecimal;
 
 public class BusStaffModel implements Serializable {
     private Long id;
@@ -9,7 +10,7 @@ public class BusStaffModel implements Serializable {
     private String nameKana;
     private String duty;
     private String jpLevel;
-    private Integer workAge;
+    private BigDecimal workAge;
     private String department;
 
     public Long getId() {
@@ -60,11 +61,11 @@ public class BusStaffModel implements Serializable {
         this.jpLevel = jpLevel;
     }
 
-    public Integer getWorkAge() {
+    public BigDecimal getWorkAge() {
         return workAge;
     }
 
-    public void setWorkAge(Integer workAge) {
+    public void setWorkAge(BigDecimal workAge) {
         this.workAge = workAge;
     }
 

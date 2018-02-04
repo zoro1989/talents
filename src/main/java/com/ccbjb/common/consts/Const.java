@@ -1,6 +1,7 @@
 package com.ccbjb.common.consts;
 
 public class Const {
+    public static final String DATE_SUFFIX = " 00:00:00";
     public enum SexEnum {
         MALE(1 , "男"),
         FEMALE(0 , "女");
@@ -329,6 +330,46 @@ public class Const {
         private String value;
         private int code;
         DutyEnum(int code, String value) {
+            this.code = code;
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public int getCode() {
+            return code;
+        }
+    }
+
+    public enum DocFeeEnum {
+        OTHER(0 , "其他"),
+        SELF(1 , "自费")
+        ;
+        private String value;
+        private int code;
+        DocFeeEnum(int code, String value) {
+            this.code = code;
+            this.value = value;
+        }
+
+        public String getValue() {
+            return value;
+        }
+
+        public int getCode() {
+            return code;
+        }
+    }
+
+    public enum TrialResultEnum {
+        FORMAL(0 , "转正"),
+        LEAVE(1 , "离职")
+        ;
+        private String value;
+        private int code;
+        TrialResultEnum(int code, String value) {
             this.code = code;
             this.value = value;
         }

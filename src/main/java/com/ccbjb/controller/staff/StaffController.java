@@ -10,6 +10,7 @@ import com.ccbjb.service.staff.IStaffService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Scope;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.HashMap;
 import java.util.List;
@@ -71,4 +72,9 @@ public class StaffController extends BaseController{
 		return staffService.deleteStaffById(ids);
 	}
 
+
+	@PostMapping(value = "importTalents")
+	public Result importTalents(MultipartFile file) {
+		return staffService.importTalents(file);
+	}
 }

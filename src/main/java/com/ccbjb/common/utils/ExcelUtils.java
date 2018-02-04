@@ -17,7 +17,8 @@ public class ExcelUtils {
         try {
             ExcelReader reader = new PoiExcelReader(excelFile.getBytes());
             List<String[]> rows = reader.read();
-            for (String[] cells: rows) {
+            for(int i = 1; i<rows.size(); i++) {
+                String[] cells = rows.get(i);
                 BusStaff busStaff = new BusStaff();
                 busStaff.setStaffNo(cells[0]);
                 busStaff.setName(cells[1]);
@@ -27,25 +28,43 @@ public class ExcelUtils {
                 }else if(Const.SexEnum.FEMALE.getValue().equals(cells[3])){
                     busStaff.setSex(Const.SexEnum.FEMALE.getCode());
                 }
-                busStaff.setBirthday(DateTimeUtil.strToDate(cells[4]));
-                busStaff.setJoinDay(DateTimeUtil.strToDate(cells[5]));
-                busStaff.setPracticeStartDate(DateTimeUtil.strToDate(cells[6]));
-                busStaff.setPracticeEndDate(DateTimeUtil.strToDate(cells[6]));
-                busStaff.setTrialStartDate(DateTimeUtil.strToDate(cells[7]));
-                busStaff.setTrialEndDate(DateTimeUtil.strToDate(cells[7]));
-                busStaff.setTrialResult(cells[8]);
-                busStaff.setFormalDate(DateTimeUtil.strToDate(cells[9]));
+                if(StringUtils.isNotBlank(cells[4])) {
+                    busStaff.setBirthday(DateTimeUtil.strToDate(cells[4] + Const.DATE_SUFFIX));
+                }
+                if(StringUtils.isNotBlank(cells[5])) {
+                    busStaff.setJoinDay(DateTimeUtil.strToDate(cells[5] + Const.DATE_SUFFIX));
+                }
+                if(StringUtils.isNotBlank(cells[6])) {
+                    busStaff.setPracticeStartDate(DateTimeUtil.strToDate(cells[6] + Const.DATE_SUFFIX));
+                    busStaff.setPracticeEndDate(DateTimeUtil.strToDate(cells[6] + Const.DATE_SUFFIX));
+                }
+                if(StringUtils.isNotBlank(cells[7])) {
+                    busStaff.setTrialStartDate(DateTimeUtil.strToDate(cells[7] + Const.DATE_SUFFIX));
+                    busStaff.setTrialEndDate(DateTimeUtil.strToDate(cells[7] + Const.DATE_SUFFIX));
+                }
+                if(Const.TrialResultEnum.FORMAL.getValue().equals(cells[8])) {
+                    busStaff.setTrialResult(Const.TrialResultEnum.FORMAL.getCode());
+                }else{
+                    busStaff.setTrialResult(Const.TrialResultEnum.LEAVE.getCode());
+                }
+                if(StringUtils.isNotBlank(cells[9])) {
+                    busStaff.setFormalDate(DateTimeUtil.strToDate(cells[9] + Const.DATE_SUFFIX));
+                }
 
                 if (Const.JobStatusEnum.ATJOB.getValue().equals(cells[10])) {
                     busStaff.setJobStatus(Const.JobStatusEnum.ATJOB.getCode());
                 }else if(Const.JobStatusEnum.LEAVEJOB.getValue().equals(cells[10])) {
                     busStaff.setJobStatus(Const.JobStatusEnum.LEAVEJOB.getCode());
                 }
-                busStaff.setBefworkAge(new BigDecimal(cells[11]).intValue());
-                busStaff.setAftworkAge(new BigDecimal(cells[12]).intValue());
-                busStaff.setWorkAge(new BigDecimal(cells[13]).intValue());
-                busStaff.setWorkDate(DateTimeUtil.strToDate(cells[14]));
-                busStaff.setGraduateDate(DateTimeUtil.strToDate(cells[15]));
+                busStaff.setBefworkAge(new BigDecimal(cells[11]));
+                busStaff.setAftworkAge(new BigDecimal(cells[12]));
+                busStaff.setWorkAge(new BigDecimal(cells[13]));
+                if(StringUtils.isNotBlank(cells[14])) {
+                    busStaff.setWorkDate(DateTimeUtil.strToDate(cells[14] + Const.DATE_SUFFIX));
+                }
+                if(StringUtils.isNotBlank(cells[15])) {
+                    busStaff.setGraduateDate(DateTimeUtil.strToDate(cells[15] + Const.DATE_SUFFIX));
+                }
                 busStaff.setGraduateSchool(cells[16]);
                 if(Const.EducationEnum.JUNIOR_COLLEGE.getValue().equals(cells[17])) {
                     busStaff.setEducation(Const.EducationEnum.JUNIOR_COLLEGE.getCode());
@@ -139,7 +158,11 @@ public class ExcelUtils {
 
                 busStaff.setDocManageMode(cells[40]);
                 busStaff.setDocNo(cells[41]);
-                busStaff.setDocFee(new BigDecimal(cells[42]));
+                if(Const.DocFeeEnum.SELF.getValue().equals(cells[42])){
+                    busStaff.setDocFee(Const.DocFeeEnum.SELF.getCode());
+                }else {
+                    busStaff.setDocFee(Const.DocFeeEnum.OTHER.getCode());
+                }
                 busStaff.setDocRemark(cells[43]);
 
                 if (Const.IsPartiedEnum.UNPARTIED.getValue().equals(cells[44])) {
@@ -147,7 +170,9 @@ public class ExcelUtils {
                 }else if(Const.IsPartiedEnum.PARTIED.getValue().equals(cells[44])){
                     busStaff.setIspartied(Const.IsPartiedEnum.PARTIED.getCode());
                 }
-                busStaff.setPartiedDate(DateTimeUtil.strToDate(cells[45]));
+                if(StringUtils.isNotBlank(cells[45])) {
+                    busStaff.setPartiedDate(DateTimeUtil.strToDate(cells[45] + Const.DATE_SUFFIX));
+                }
                 busStaff.setPartiedRls(cells[46]);
                 busStaff.setPartiedRls1(cells[47]);
                 busStaff.setPassportNo(cells[48]);
@@ -175,10 +200,13 @@ public class ExcelUtils {
                 }else {
                     busStaff.setDepartment(Const.DepartmentEnum.OTHER.getCode());
                 }
-                busStaff.setLeaveDate(DateTimeUtil.strToDate(cells[57]));
+                if(StringUtils.isNotBlank(cells[57])) {
+                    busStaff.setLeaveDate(DateTimeUtil.strToDate(cells[57] + Const.DATE_SUFFIX));
+                }
 
                 busStaffList.add(busStaff);
             }
+
         }catch (Exception e){
 
         }

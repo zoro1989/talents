@@ -6,6 +6,7 @@ import com.ccbjb.common.domain.BusProjectExp;
 import com.ccbjb.common.domain.BusStaff;
 import com.ccbjb.common.mybatis.Result;
 import com.ccbjb.common.mybatis.ResultGenerator;
+import com.ccbjb.common.utils.ExcelUtils;
 import com.ccbjb.common.utils.LoggerUtils;
 import com.ccbjb.common.utils.StringUtils;
 import com.ccbjb.dao.*;
@@ -16,7 +17,9 @@ import com.github.pagehelper.PageInfo;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -227,6 +230,16 @@ public class StaffServiceImpl implements IStaffService {
 		busStaffDao.deleteById(id);
 		busProjectExpDao.deleteByStaffId(id);
 		busJpExpDao.deleteByStaffId(id);
+	}
+
+	@Override
+	@Transactional
+	public Result importTalents(MultipartFile file) {
+		List<BusStaff> busStaffList = ExcelUtils.readFileToVo(file);
+		for (BusStaff staff : busStaffList) {
+			busStaffDao.save(staff);
+		}
+		return ResultGenerator.genSuccessResult("导入完毕");
 	}
 
 }

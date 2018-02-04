@@ -45,28 +45,28 @@ public class BusStaff implements Serializable {
     private String trialEndDateStart;
     @Transient
     private String trialEndDateEnd;
-    private String trialResult;
+    private Integer trialResult;
     private Date formalDate;
     @Transient
     private String formalDateStart;
     @Transient
     private String formalDateEnd;
     private Integer jobStatus;
-    private Integer befworkAge;
+    private BigDecimal befworkAge;
     @Transient
-    private Integer befworkAgeStart;
+    private BigDecimal befworkAgeStart;
     @Transient
-    private Integer befworkAgeEnd;
-    private Integer aftworkAge;
+    private BigDecimal befworkAgeEnd;
+    private BigDecimal aftworkAge;
     @Transient
-    private Integer aftworkAgeStart;
+    private BigDecimal aftworkAgeStart;
     @Transient
-    private Integer aftworkAgeEnd;
+    private BigDecimal aftworkAgeEnd;
     @Transient
-    private Integer workAgeStart;
+    private BigDecimal workAgeStart;
     @Transient
-    private Integer workAgeEnd;
-    private Integer workAge;
+    private BigDecimal workAgeEnd;
+    private BigDecimal workAge;
     @Transient
     private String workDateStart;
     @Transient
@@ -103,7 +103,7 @@ public class BusStaff implements Serializable {
     private Integer hasbaby;
     private String docManageMode;
     private String docNo;
-    private BigDecimal docFee;
+    private Integer docFee;
     private String docRemark;
     private Integer ispartied;
     private Date partiedDate;
@@ -120,11 +120,11 @@ public class BusStaff implements Serializable {
     private Integer department;
     private Date leaveDate;
     private Integer duty;
-    private Integer cmpbefworkAge;
+    private BigDecimal cmpbefworkAge;
     @Transient
-    private Integer cmpbefworkAgeStart;
+    private BigDecimal cmpbefworkAgeStart;
     @Transient
-    private Integer cmpbefworkAgeEnd;
+    private BigDecimal cmpbefworkAgeEnd;
     private Integer tLevel;
     private Integer studentLine;
     @Transient
@@ -252,7 +252,6 @@ public class BusStaff implements Serializable {
 
     @Transient
     private String selectedProjectId;
-
 
     public Long getId() {
         return id;
@@ -438,11 +437,11 @@ public class BusStaff implements Serializable {
         this.trialEndDateEnd = trialEndDateEnd;
     }
 
-    public String getTrialResult() {
+    public Integer getTrialResult() {
         return trialResult;
     }
 
-    public void setTrialResult(String trialResult) {
+    public void setTrialResult(Integer trialResult) {
         this.trialResult = trialResult;
     }
 
@@ -478,75 +477,75 @@ public class BusStaff implements Serializable {
         this.jobStatus = jobStatus;
     }
 
-    public Integer getBefworkAge() {
+    public BigDecimal getBefworkAge() {
         return befworkAge;
     }
 
-    public void setBefworkAge(Integer befworkAge) {
+    public void setBefworkAge(BigDecimal befworkAge) {
         this.befworkAge = befworkAge;
     }
 
-    public Integer getBefworkAgeStart() {
+    public BigDecimal getBefworkAgeStart() {
         return befworkAgeStart;
     }
 
-    public void setBefworkAgeStart(Integer befworkAgeStart) {
+    public void setBefworkAgeStart(BigDecimal befworkAgeStart) {
         this.befworkAgeStart = befworkAgeStart;
     }
 
-    public Integer getBefworkAgeEnd() {
+    public BigDecimal getBefworkAgeEnd() {
         return befworkAgeEnd;
     }
 
-    public void setBefworkAgeEnd(Integer befworkAgeEnd) {
+    public void setBefworkAgeEnd(BigDecimal befworkAgeEnd) {
         this.befworkAgeEnd = befworkAgeEnd;
     }
 
-    public Integer getAftworkAge() {
+    public BigDecimal getAftworkAge() {
         return aftworkAge;
     }
 
-    public void setAftworkAge(Integer aftworkAge) {
+    public void setAftworkAge(BigDecimal aftworkAge) {
         this.aftworkAge = aftworkAge;
     }
 
-    public Integer getAftworkAgeStart() {
+    public BigDecimal getAftworkAgeStart() {
         return aftworkAgeStart;
     }
 
-    public void setAftworkAgeStart(Integer aftworkAgeStart) {
+    public void setAftworkAgeStart(BigDecimal aftworkAgeStart) {
         this.aftworkAgeStart = aftworkAgeStart;
     }
 
-    public Integer getAftworkAgeEnd() {
+    public BigDecimal getAftworkAgeEnd() {
         return aftworkAgeEnd;
     }
 
-    public void setAftworkAgeEnd(Integer aftworkAgeEnd) {
+    public void setAftworkAgeEnd(BigDecimal aftworkAgeEnd) {
         this.aftworkAgeEnd = aftworkAgeEnd;
     }
 
-    public Integer getWorkAgeStart() {
+    public BigDecimal getWorkAgeStart() {
         return workAgeStart;
     }
 
-    public void setWorkAgeStart(Integer workAgeStart) {
+    public void setWorkAgeStart(BigDecimal workAgeStart) {
         this.workAgeStart = workAgeStart;
     }
 
-    public Integer getWorkAgeEnd() {
+    public BigDecimal getWorkAgeEnd() {
         return workAgeEnd;
     }
 
-    public void setWorkAgeEnd(Integer workAgeEnd) {
+    public void setWorkAgeEnd(BigDecimal workAgeEnd) {
         this.workAgeEnd = workAgeEnd;
     }
 
-    public Integer getWorkAge() {
+    public BigDecimal getWorkAge() {
         return workAge;
     }
 
-    public void setWorkAge(Integer workAge) {
+    public void setWorkAge(BigDecimal workAge) {
         this.workAge = workAge;
     }
 
@@ -806,11 +805,11 @@ public class BusStaff implements Serializable {
         this.docNo = docNo;
     }
 
-    public BigDecimal getDocFee() {
+    public Integer getDocFee() {
         return docFee;
     }
 
-    public void setDocFee(BigDecimal docFee) {
+    public void setDocFee(Integer docFee) {
         this.docFee = docFee;
     }
 
@@ -942,27 +941,27 @@ public class BusStaff implements Serializable {
         this.duty = duty;
     }
 
-    public Integer getCmpbefworkAge() {
+    public BigDecimal getCmpbefworkAge() {
         return cmpbefworkAge;
     }
 
-    public void setCmpbefworkAge(Integer cmpbefworkAge) {
+    public void setCmpbefworkAge(BigDecimal cmpbefworkAge) {
         this.cmpbefworkAge = cmpbefworkAge;
     }
 
-    public Integer getCmpbefworkAgeStart() {
+    public BigDecimal getCmpbefworkAgeStart() {
         return cmpbefworkAgeStart;
     }
 
-    public void setCmpbefworkAgeStart(Integer cmpbefworkAgeStart) {
+    public void setCmpbefworkAgeStart(BigDecimal cmpbefworkAgeStart) {
         this.cmpbefworkAgeStart = cmpbefworkAgeStart;
     }
 
-    public Integer getCmpbefworkAgeEnd() {
+    public BigDecimal getCmpbefworkAgeEnd() {
         return cmpbefworkAgeEnd;
     }
 
-    public void setCmpbefworkAgeEnd(Integer cmpbefworkAgeEnd) {
+    public void setCmpbefworkAgeEnd(BigDecimal cmpbefworkAgeEnd) {
         this.cmpbefworkAgeEnd = cmpbefworkAgeEnd;
     }
 
@@ -1068,6 +1067,30 @@ public class BusStaff implements Serializable {
 
     public void setCountryList(List<SysDic> countryList) {
         this.countryList = countryList;
+    }
+
+    public List<SysDic> getIsmarriedList() {
+        return ismarriedList;
+    }
+
+    public void setIsmarriedList(List<SysDic> ismarriedList) {
+        this.ismarriedList = ismarriedList;
+    }
+
+    public List<SysDic> getHasbabyList() {
+        return hasbabyList;
+    }
+
+    public void setHasbabyList(List<SysDic> hasbabyList) {
+        this.hasbabyList = hasbabyList;
+    }
+
+    public List<SysDic> getIspartiedList() {
+        return ispartiedList;
+    }
+
+    public void setIspartiedList(List<SysDic> ispartiedList) {
+        this.ispartiedList = ispartiedList;
     }
 
     public List<SysDic> getValidList() {
@@ -1196,6 +1219,30 @@ public class BusStaff implements Serializable {
 
     public void setCountryIdList(List<String> countryIdList) {
         this.countryIdList = countryIdList;
+    }
+
+    public List<String> getIsmarriedIdList() {
+        return ismarriedIdList;
+    }
+
+    public void setIsmarriedIdList(List<String> ismarriedIdList) {
+        this.ismarriedIdList = ismarriedIdList;
+    }
+
+    public List<String> getHasbabyIdList() {
+        return hasbabyIdList;
+    }
+
+    public void setHasbabyIdList(List<String> hasbabyIdList) {
+        this.hasbabyIdList = hasbabyIdList;
+    }
+
+    public List<String> getIspartiedIdList() {
+        return ispartiedIdList;
+    }
+
+    public void setIspartiedIdList(List<String> ispartiedIdList) {
+        this.ispartiedIdList = ispartiedIdList;
     }
 
     public List<String> getValidIdList() {
@@ -1396,53 +1443,5 @@ public class BusStaff implements Serializable {
 
     public void setSelectedProjectId(String selectedProjectId) {
         this.selectedProjectId = selectedProjectId;
-    }
-
-    public List<SysDic> getIsmarriedList() {
-        return ismarriedList;
-    }
-
-    public void setIsmarriedList(List<SysDic> ismarriedList) {
-        this.ismarriedList = ismarriedList;
-    }
-
-    public List<SysDic> getHasbabyList() {
-        return hasbabyList;
-    }
-
-    public void setHasbabyList(List<SysDic> hasbabyList) {
-        this.hasbabyList = hasbabyList;
-    }
-
-    public List<SysDic> getIspartiedList() {
-        return ispartiedList;
-    }
-
-    public void setIspartiedList(List<SysDic> ispartiedList) {
-        this.ispartiedList = ispartiedList;
-    }
-
-    public List<String> getIsmarriedIdList() {
-        return ismarriedIdList;
-    }
-
-    public void setIsmarriedIdList(List<String> ismarriedIdList) {
-        this.ismarriedIdList = ismarriedIdList;
-    }
-
-    public List<String> getHasbabyIdList() {
-        return hasbabyIdList;
-    }
-
-    public void setHasbabyIdList(List<String> hasbabyIdList) {
-        this.hasbabyIdList = hasbabyIdList;
-    }
-
-    public List<String> getIspartiedIdList() {
-        return ispartiedIdList;
-    }
-
-    public void setIspartiedIdList(List<String> ispartiedIdList) {
-        this.ispartiedIdList = ispartiedIdList;
     }
 }

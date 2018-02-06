@@ -34,13 +34,12 @@
                 /fonts/** = anon
                 /css/** = anon
 
-                /staff/** = anon
+                /common/** = anon
 
                 <!-- 入口html匿名访问 -->
                 /index.html = anon
                 / = anon
                 /favicon.ico = anon
-
                 <!-- 请求 logout.action地址，shiro去清除session-->
                 /user/logout.tkm = logout
 

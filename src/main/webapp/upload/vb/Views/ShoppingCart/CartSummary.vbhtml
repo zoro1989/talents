@@ -1,1 +1,0 @@
-﻿@Html.ActionLink("Cart (" & ViewData("CartCount") & ")", "Index", "ShoppingCart", New With {Key .id = "cart-status"})

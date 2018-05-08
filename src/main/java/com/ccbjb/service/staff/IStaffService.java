@@ -20,4 +20,6 @@ public interface IStaffService {
 
 	Result importTalents(MultipartFile file);
 
+	Result findLastImportTime(String type);
+
 }

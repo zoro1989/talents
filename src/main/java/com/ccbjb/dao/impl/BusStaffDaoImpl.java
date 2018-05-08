@@ -45,5 +45,10 @@ public class BusStaffDaoImpl extends AbstractDao<BusStaff> implements BusStaffDa
         return busStaffMapper.getChartProjectDataByDicType(dicType);
     }
 
+    @Override
+    public BusStaff findLastImportInfo() {
+        return busStaffMapper.findLastImportInfo();
+    }
+
 
 }

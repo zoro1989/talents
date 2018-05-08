@@ -127,6 +127,7 @@ public class BusStaff implements Serializable {
     private BigDecimal cmpbefworkAgeEnd;
     private Integer tLevel;
     private Integer studentLine;
+    private Date createTime;
     @Transient
     private List<SysDic> sexList = new ArrayList<>();
     @Transient
@@ -1443,5 +1444,13 @@ public class BusStaff implements Serializable {
 
     public void setSelectedProjectId(String selectedProjectId) {
         this.selectedProjectId = selectedProjectId;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

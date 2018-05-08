@@ -18,4 +18,6 @@ public interface BusStaffDao extends BaseDao<BusStaff> {
     BusStaff selectInfoById(Long id);
     List<ChartDataModel> getChartPersonDataByDicType(String dicType);
     List<ChartDataModel> getChartProjectDataByDicType(String dicType);
+
+    BusStaff findLastImportInfo();
 }

@@ -15,4 +15,5 @@ public interface BusStaffMapper extends TKMMapper<BusStaff> {
     List<BusStaff> findAllStaff(BusStaff busStaff);
     List<ChartDataModel> getChartPersonDataByDicType(@Param("dicType") String dicType);
     List<ChartDataModel> getChartProjectDataByDicType(@Param("dicType") String dicType);
+    BusStaff findLastImportInfo();
 }

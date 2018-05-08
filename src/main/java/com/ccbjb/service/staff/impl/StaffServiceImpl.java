@@ -11,6 +11,7 @@ import com.ccbjb.common.utils.LoggerUtils;
 import com.ccbjb.common.utils.StringUtils;
 import com.ccbjb.dao.*;
 import com.ccbjb.model.staff.BusStaffModel;
+import com.ccbjb.model.staff.ImportTimeModel;
 import com.ccbjb.service.staff.IStaffService;
 import com.github.pagehelper.PageHelper;
 import com.github.pagehelper.PageInfo;
@@ -21,6 +22,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.math.BigDecimal;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -35,6 +37,8 @@ public class StaffServiceImpl implements IStaffService {
 	BusProjectExpDao busProjectExpDao;
 	@Autowired
 	BusJpExpDao busJpExpDao;
+
+	@Override
 	public Result initStaffSearch() {
 		BusStaff busStaff = new BusStaff();
 
@@ -237,9 +241,23 @@ public class StaffServiceImpl implements IStaffService {
 	public Result importTalents(MultipartFile file) {
 		List<BusStaff> busStaffList = ExcelUtils.readFileToVo(file);
 		for (BusStaff staff : busStaffList) {
+			staff.setCreateTime(new Date());
 			busStaffDao.save(staff);
 		}
 		return ResultGenerator.genSuccessResult("导入完毕");
+	}
+
+	@Override
+	@Transactional
+	public Result findLastImportTime(String type) {
+		BusStaff info = busStaffDao.findLastImportInfo();
+		ImportTimeModel model = new ImportTimeModel();
+		if(StringUtils.isNotBlank(info.getCreateTime())) {
+			model.setTalentsImportTime(info.getCreateTime().getTime());
+		} else {
+			model.setTalentsImportTime(System.currentTimeMillis());
+		}
+		return ResultGenerator.genSuccessResult(model);
 	}
 
 }

@@ -77,4 +77,9 @@ public class StaffController extends BaseController{
 	public Result importTalents(MultipartFile file) {
 		return staffService.importTalents(file);
 	}
+
+	@GetMapping(value = "findLastImportTime")
+	public Result findLastImportTime(String type) {
+		return staffService.findLastImportTime(type);
+	}
 }

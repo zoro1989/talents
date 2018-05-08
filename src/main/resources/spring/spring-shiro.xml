@@ -29,11 +29,8 @@
             <value>
                 <!-- 对静态资源设置匿名访问 -->
                 /upload/** = anon
-                /images/** = anon
-                /js/** = anon
-                /fonts/** = anon
-                /css/** = anon
-
+                /static/** = anon
+                <!-- common下Controller匿名 -->
                 /common/** = anon
 
                 <!-- 入口html匿名访问 -->

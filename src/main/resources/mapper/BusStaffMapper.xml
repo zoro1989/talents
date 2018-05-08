@@ -68,7 +68,8 @@
         s.duty,
         s.cmpbefwork_age,
         s.t_level,
-        s.student_line
+        s.student_line,
+        s.create_time
     </sql>
 
     <sql id="where_all">
@@ -393,5 +394,11 @@
 	inner join (select d1.dic_label,d1.dic_value from sys_dic d1 right join sys_dic d2 on d1.parent_id = d2.id where d2.dic_value = #{dicType}) d
 		on p.${dicType}=d.dic_value
 	group by p.${dicType}
+    </select>
+    <select id="findLastImportInfo" resultType="BusStaff">
+        select
+        <include refid="Base_Column_List"/>
+        from bus_staff s
+        limit 1 offset 0
     </select>
 </mapper>
